@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💘 Games</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #ffe5ec, #e0f7fa);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Navbar Style */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: #fff5f7;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 99;
+      padding: 10px 0;
+    }
+    .navbar-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+    .navbar-container a {
+      text-decoration: none;
+      color: #ff6b9f;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 10px 15px;
+      border-radius: 20px;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+    .navbar-container a:hover {
+      background: #ffe0eb;
+      transform: scale(1.1);
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8em;
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    .game-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .question {
+      font-size: 1.3em;
+      margin-bottom: 25px;
+      color: #555;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 15px;
+      border: none;
+      background-color: #f06292;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ec407a;
+      transform: scale(1.05);
+    }
+
+    .result {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .bg-heart {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 2rem;
+      color: rgba(255, 105, 135, 0.2);
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .heart:nth-child(1) { top: 10%; left: 20%; animation-delay: 1s; }
+    .heart:nth-child(2) { top: 40%; left: 70%; animation-delay: 3s; }
+    .heart:nth-child(3) { top: 70%; left: 30%; animation-delay: 5s; }
+    .heart:nth-child(4) { top: 20%; left: 80%; animation-delay: 2s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0.4; }
+      50% { transform: translateY(-20px); opacity: 0.7; }
+      100% { transform: translateY(0); opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 💗 Floating Background Hearts -->
+  <div class="bg-heart">
+    <div class="heart">💗</div>
+    <div class="heart">💖</div>
+    <div class="heart">💘</div>
+    <div class="heart">💝</div>
+  </div>
+
+  <!-- 💞 Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="mensive.html">💘 Mensive</a>
+      <a href="time.html">⏳ Countdown</a>
+      <a href="galeri.html">📸 Galeri</a>
+      <a href="song.html">🎶 Song</a>
+      <a href="Games.html">🎮 Games</a>
+    </div>
+  </nav>
+
+  <!-- 🧠 Game Content -->
+  <header>
+    <h1>GAMES TEBAK TEBAKAN 🎮</h1>
+    <p style="color:#666;">Tebak seberapa kenalnya kamu sama akuu 💞</p>
+  </header>
+
+  <div class="game-container" id="gameBox">
+    <div class="question" id="question">Loading pertanyaan...</div>
+    <div class="choices" id="choices"></div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <!-- 🔊 Sound Effect -->
+  <audio id="audioCorrect" src="sound epek benar.mp3" preload="auto"></audio>
+  <audio id="audioWrong" src="tled video - Made with Clipchamp.mp3" preload="auto"></audio>
+
+  <script>
+    const questions = [
+      {
+        q: "Kita pertama kali nonton film bareng di mana?",
+        choices: ["Netflix", "Moviplex", "Disney+", "Di rumah"],
+        answer: "Moviplex"
+      },
+      {
+        q: "Siapa yang lebih sering ngambek? 😅",
+        choices: ["Aku", "Kamu", "Sama-sama", "Nggak pernah"],
+        answer: "Sama-sama"
+      },
+      {
+        q: "Warna baju yang PALING DOMINAN DI PAKE?",
+        choices: ["Monokrom", "Pink", "Putih", "Hitam"],
+        answer: "Monokrom"
+      },
+      {
+        q: "Makanan favorit kita saat malam minggu?",
+        choices: ["Bakso", "Mie ayam", "Ayam", "Semuanya"],
+        answer: "Semuanya"
+      },
+      {
+        q: "Tanggal jadian kita itu?",
+        choices: ["10 Februari", "14 Mei", "2 April", "28 Maret"],
+        answer: "2 April"
+      }
+    ];
+
+    let index = 0;
+
+    const correctSound = document.getElementById("audioCorrect");
+    const wrongSound = document.getElementById("audioWrong");
+
+    function loadQuestion() {
+      if (index >= questions.length) {
+        document.getElementById("gameBox").innerHTML = `
+          <h2 style="color:#e91e63;">🎉 Yeay, selesai!</h2>
+          <p>Terima kasih udah main game cinta ini bareng aku 💕</p>
+        `;
+        return;
+      }
+
+      const q = questions[index];
+      document.getElementById("question").textContent = q.q;
+      const choicesContainer = document.getElementById("choices");
+      choicesContainer.innerHTML = "";
+
+      q.choices.forEach(choice => {
+        const btn = document.createElement("button");
+        btn.textContent = choice;
+        btn.onclick = () => checkAnswer(btn.textContent, q.answer);
+        choicesContainer.appendChild(btn);
+      });
+
+      document.getElementById("result").textContent = "";
+    }
+
+    function checkAnswer(selected, correct) {
+      const result = document.getElementById("result");
+      if (selected === correct) {
+        result.textContent = "💘 Betul sayang!";
+        result.style.color = "#e91e63";
+        correctSound.play();
+      } else {
+        result.textContent = "🙈 TET NOTT";
+        result.style.color = "#888";
+        wrongSound.play();
+      }
+
+      setTimeout(() => {
+        index++;
+        loadQuestion();
+      }, 1600);
+    }
+
+    window.onload = loadQuestion;
+  </script>
+</body>
+</html>

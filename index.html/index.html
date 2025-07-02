@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surat Cinta Digital untuk Febi Erika</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #dceeff, #f4faff);
+      overflow-x: hidden;
+      position: relative;
+      color: #34495e;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      animation: popIn 1s ease-out forwards;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8em;
+      color: #3d8ba1;
+      margin-bottom: 10px;
+    }
+    p.subtitle {
+      font-size: 1.2em;
+      color: #5d7687;
+    }
+    .surat-cinta {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #e8f8ff;
+      border-radius: 25px;
+      padding: 40px;
+      box-shadow: 0 10px 20px rgba(0, 123, 167, 0.15);
+      position: relative;
+      animation: slideInUp 1.5s ease;
+    }
+    .surat-cinta p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      text-align: justify; /* ✅ teks jadi rata kiri-kanan */
+    }
+    .closing {
+      font-style: italic;
+      text-align: right;
+      margin-top: 30px;
+    }
+    .emoji {
+      font-size: 1.5em;
+      animation: bounce 2s infinite;
+      text-align: center;
+    }
+    .floating-icon {
+      position: absolute;
+      width: 50px;
+      animation: floatY 3s ease-in-out infinite;
+    }
+    .icon-heart {
+      top: -25px;
+      right: 10px;
+    }
+    .icon-star {
+      bottom: -30px;
+      left: -20px;
+      width: 60px;
+    }
+    .bg-bubble {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 30px;
+      height: 30px;
+      background: #a2d5f2;
+      border-radius: 50%;
+      animation: rise 10s infinite ease-in;
+      opacity: 0.3;
+    }
+    .bubble:nth-child(2) { left: 20%; width: 20px; animation-delay: 2s; }
+    .bubble:nth-child(3) { left: 40%; width: 25px; animation-delay: 4s; }
+    .bubble:nth-child(4) { left: 60%; width: 35px; animation-delay: 6s; }
+    .bubble:nth-child(5) { left: 80%; width: 15px; animation-delay: 1s; }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes rise {
+      0% { bottom: -100px; opacity: 0.3; }
+      100% { bottom: 100vh; opacity: 0; }
+    }
+
+    /* === Navbar Lucu === */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: #fff5f7;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 99;
+      padding: 10px 0;
+    }
+    .navbar-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+    .navbar-container a {
+      text-decoration: none;
+      color: #ff6b9f;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 10px 15px;
+      border-radius: 20px;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+    .navbar-container a:hover {
+      background: #ffe0eb;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-bubble">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <!-- 🌸 Navbar Interaktif -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="mensive.html">💘 Mensive</a>
+    <a href="time.html">⏳ Countdown</a>
+    <a href="galeri.html">📸 Galeri</a>
+    <a href="song.html">🎶 Song</a>
+    <a href="Games.html">🎮 Games</a> <!-- Tambahan ini -->
+  </div>
+</nav>
+  <header>
+    <h1>HAI SAYANGG! 💕</h1>
+    <p class="subtitle">dibuat khusus buat kamu yang paling aku sayangg.</p>
+  </header>
+
+  <div class="surat-cinta">
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" class="floating-icon icon-heart">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616490.png" class="floating-icon icon-star">
+
+    <p>Hi Febi Erika 🌸</p>
+    <p>Happy mensive yang ke 2 Tahun 2 bulan sayang, semoga kedepannya kita bisa menjadi lebih baik lagi yaw bii sayang, terimaaciw sayang kamu masi mau bareng sama aku yaw, maaf yaw kalo selalu berantem terus hoho, maaf selalu membuat kamu kesal sayang, itu sebenernya penyakit kangen sayang, aku sangat mencintai kamu biw, maaf kalo semisal kamu lagi butuh tapi akunya engga ada atau lagi ngerjain suatu hal apapun, emang lagi susah susahnya nyari waktu buat bareng yaw bi, nanti juga tapi pasti bakal ada waktu ko buat kita entah ngelakuin hal apapun itu, maaf sayang kalo aku juga jadi tidak begitu pengertian, maaf juga kalo sekarang sekarang suka ada egoisnya, mungkin kita sama sama gampang kesel selain karena akunya nyebelin atau kamu nya nyebelin, ya mungkin karena ada faktor tugas atau hal apapun yang bikin kita pusing jadi emosinya ga ke kontrol, mungkin itu PR buat kita biar bisa lebih ngontrol emosi yang ada.</p>
+    <p>Buat kamu juga semangat yaw UAS-nya, semoga bisa dapetin nilai sama IPK yang bagus, jangan lupa sholat juga, jangan lupa makan, minum, jaga kesehatan selalu biww, kalo ada waktu istirahat pake istirahat, mandi juga jangan ditunda tundaa, terus selalu semangat juga ya sayang menjalani harinya, ya walaupun di kelas kamu banyak yang ngomongin cc kamu yang engga-engga yayauda la anggap angin lewat aja, biarin aja sampe mulut mereka berbusa ngomongin kelompok kaamu, sama-sama ngedoain yaw, semoga kita sama-sama bisa sukses entah itu di hal apapun, intinya juga lakuin hal yang membuat kamu happy, aku selalu ngedukung kamu kok selama hal yang kamu lakuin itu positif, aku sayang kamu biw, gatau ini ngetiknya abstrak banget kemana-mana ga nyusun huhu, intinya aku sayang kamu.</p>
+
+    <p class="emoji">🌸🌈🐻💌</p>
+    <p class="closing">Love You,<br>Fega</p>
+  </div>
+</body>
+</html>

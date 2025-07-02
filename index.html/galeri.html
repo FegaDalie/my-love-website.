@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeri Memories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #dceeff, #f4faff);
+      color: #2d3e50;
+      overflow-x: hidden;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      text-align: center;
+      padding: 20px;
+    }
+    .popup h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2em;
+      color: #e74c8c;
+      margin-bottom: 10px;
+    }
+    .popup p {
+      font-size: 1.1em;
+      color: #444;
+      margin-bottom: 25px;
+    }
+    .popup button {
+      background: #ff6b9f;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .popup button:hover {
+      transform: scale(1.05);
+      background: #ff89b3;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #fff5f7;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .navbar-container {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+    .navbar-container a {
+      text-decoration: none;
+      color: #ff6b9f;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 10px 15px;
+      border-radius: 15px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .navbar-container a:hover {
+      background: #ffe0eb;
+      transform: scale(1.05);
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      animation: popIn 1s ease-out forwards;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5em;
+      color: #3d8ba1;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 30px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .photo-box {
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .photo-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .story-box img {
+      height: 480px;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 1.8em;
+      top: 10px;
+      right: 15px;
+      animation: spinEmoji 3s infinite;
+    }
+
+    .floating-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 30px;
+      height: 30px;
+      background: #a2d5f2;
+      border-radius: 50%;
+      animation: rise 10s infinite ease-in;
+      opacity: 0.3;
+    }
+
+    .bubble:nth-child(2) { left: 10%; width: 20px; animation-delay: 2s; }
+    .bubble:nth-child(3) { left: 30%; width: 25px; animation-delay: 4s; }
+    .bubble:nth-child(4) { left: 50%; width: 35px; animation-delay: 6s; }
+    .bubble:nth-child(5) { left: 70%; width: 15px; animation-delay: 1s; }
+    .bubble:nth-child(6) { left: 90%; width: 40px; animation-delay: 3s; }
+
+    @keyframes rise {
+      0% { bottom: -100px; opacity: 0.3; }
+      100% { bottom: 100vh; opacity: 0; }
+    }
+
+    @keyframes spinEmoji {
+      0%, 100% { transform: rotate(0); }
+      50% { transform: rotate(20deg); }
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bubble Background -->
+  <div class="floating-bg">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <!-- Musik -->
+  <audio id="bgMusic" loop>
+    <source src="sss.mp3" type="audio/mp3">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
+  <!-- Popup Welcome -->
+  <div class="popup" id="popup">
+    <h2>Selamat datang, Sayang! 💕</h2>
+    <p>Galeri kenangan ini spesial untuk kita berdua. Klik tombol di bawah untuk mulai. ✨</p>
+    <button onclick="startLove()">🎶 Play Love Song</button>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+  <div class="navbar-container">
+    <a href="mensive.html">💘 Mensive</a>
+    <a href="time.html">⏳ Countdown</a>
+    <a href="galeri.html">📸 Galeri</a>
+    <a href="song.html">🎶 Song</a>
+    <a href="Games.html">🎮 Games</a> <!-- Tambahan ini -->
+  </div>
+</nav>
+
+  <!-- Header -->
+  <header>
+    <h1>📸 Memories 💕</h1>
+    <p>ini foto foto random aja hehe 🌈</p>
+  </header>
+
+  <!-- Galeri -->
+  <div class="gallery" id="gallery">
+    <div class="photo-box"><span class="emoji">💖</span><img src="1.jpeg" alt="1"></div>
+    <div class="photo-box"><span class="emoji">🐻</span><img src="2.jpeg" alt="2"></div>
+    <div class="photo-box"><span class="emoji">🌸</span><img src="3 (1).jpeg" alt="3"></div>
+    <div class="photo-box"><span class="emoji">💌</span><img src="3 (5).jpeg" alt="4"></div>
+    <div class="photo-box"><span class="emoji">🎈</span><img src="3 (3).jpeg" alt="5"></div>
+    <div class="photo-box"><span class="emoji">💫</span><img src="3 (4).jpeg" alt="6"></div>
+    <div class="photo-box"><span class="emoji">✨</span><img src="3 (2).jpeg" alt="7"></div>
+    <div class="photo-box"><span class="emoji">🎠</span><img src="95.jpeg" alt="8"></div>
+    <div class="photo-box story-box"><span class="emoji">📱</span><img src="99.jpg" alt="Story 1"></div>
+    <div class="photo-box story-box"><span class="emoji">🎞️</span><img src="97.jpeg" alt="Story 2"></div>
+    <div class="photo-box story-box"><span class="emoji">📷</span><img src="96.jpeg" alt="Story 3"></div>
+    <div class="photo-box story-box"><span class="emoji">💘</span><img src="98.jpg" alt="Story 4"></div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const photoBoxes = document.querySelectorAll('.photo-box');
+
+    function startLove() {
+      const popup = document.getElementById("popup");
+      const music = document.getElementById("bgMusic");
+
+      popup.style.display = "none";
+
+      music.play().then(() => {
+        photoBoxes.forEach((box, index) => {
+          setTimeout(() => {
+            box.classList.add('visible');
+          }, index * 3000); // Delay tiap 3 detik
+        });
+      }).catch(e => {
+        console.log("Autoplay blocked:", e);
+        alert("Klik tombol untuk memulai musik dan galeri 💕");
+      });
+    }
+  </script>
+
+</body>
+</html>
